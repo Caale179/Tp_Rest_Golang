@@ -1,0 +1,408 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "Projet de LP MiAR de création d'une API REST en Go",
+    "title": "PROJET API WEB REST EN GO",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8000",
+  "basePath": "/rest",
+  "paths": {
+    "/languages": {
+      "get": {
+        "tags": [
+          "Languages"
+        ],
+        "summary": "Renvoie la liste de tous les langages de prorgammation",
+        "operationId": "GetAllLanguages",
+        "responses": {
+          "200": {
+            "$ref": "#/responses/languagesRes"
+          },
+          "400": {
+            "$ref": "#/responses/badReq"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Languages"
+        ],
+        "summary": "Modifie un langage de progammation",
+        "operationId": "EditLanguage",
+        "parameters": [
+          {
+            "description": "Le langage à modifier",
+            "name": "language",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Language"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/booleanRes"
+          },
+          "400": {
+            "$ref": "#/responses/badReq"
+          },
+          "404": {
+            "$ref": "#/responses/notFoundReq"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Languages"
+        ],
+        "summary": "Ajoute un nouveau langage de progammation",
+        "operationId": "AddLanguage",
+        "parameters": [
+          {
+            "description": "Le langage à ajouter",
+            "name": "language",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Language"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "$ref": "#/responses/booleanRes"
+          },
+          "400": {
+            "$ref": "#/responses/badReq"
+          }
+        }
+      }
+    },
+    "/languages/{code}": {
+      "get": {
+        "tags": [
+          "Languages"
+        ],
+        "summary": "Renvoie le langage ayant le code spécifié",
+        "operationId": "GetLanguages",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "code du langage",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/languageRes"
+          },
+          "400": {
+            "$ref": "#/responses/badReq"
+          },
+          "404": {
+            "$ref": "#/responses/notFoundReq"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Languages"
+        ],
+        "summary": "Supprime le langage ayant le code spécifié",
+        "operationId": "DeleteLanguage",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "code du langage",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "Le langage à supprimer",
+            "name": "language",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Language"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/booleanRes"
+          },
+          "400": {
+            "$ref": "#/responses/badReq"
+          },
+          "404": {
+            "$ref": "#/responses/notFoundReq"
+          }
+        }
+      }
+    },
+    "/students": {
+      "get": {
+        "tags": [
+          "Students"
+        ],
+        "summary": "Renvoie la liste de tous les étudiants",
+        "operationId": "GetAllStudents",
+        "responses": {
+          "200": {
+            "$ref": "#/responses/studentsRes"
+          },
+          "400": {
+            "$ref": "#/responses/badReq"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Students"
+        ],
+        "summary": "Modifie un étudiant",
+        "operationId": "EditStudent",
+        "parameters": [
+          {
+            "description": "L'étudiant à modifier",
+            "name": "student",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/booleanRes"
+          },
+          "400": {
+            "$ref": "#/responses/badReq"
+          },
+          "404": {
+            "$ref": "#/responses/notFoundReq"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Students"
+        ],
+        "summary": "Ajoute un nouvel étudiant",
+        "operationId": "AddStudent",
+        "parameters": [
+          {
+            "description": "L'étudiant à ajouter",
+            "name": "student",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "$ref": "#/responses/booleanRes"
+          },
+          "400": {
+            "$ref": "#/responses/badReq"
+          }
+        }
+      }
+    },
+    "/students/{id}": {
+      "get": {
+        "tags": [
+          "Students"
+        ],
+        "summary": "Renvoie l'étudiant d'id spécifié",
+        "operationId": "GetStudents",
+        "parameters": [
+          {
+            "type": "int",
+            "description": "id de l'étudiant",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/studentRes"
+          },
+          "400": {
+            "$ref": "#/responses/badReq"
+          },
+          "404": {
+            "$ref": "#/responses/notFoundReq"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Students"
+        ],
+        "summary": "Supprime l'étudiant d'id spécifié",
+        "operationId": "DeleteStudent",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "id de l'étudiant",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "L'étudiant à supprimer",
+            "name": "student",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/booleanRes"
+          },
+          "400": {
+            "$ref": "#/responses/badReq"
+          },
+          "404": {
+            "$ref": "#/responses/notFoundReq"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Language": {
+      "description": "Un langage de programmation",
+      "type": "object",
+      "properties": {
+        "Code": {
+          "description": "Le code unique du langage",
+          "type": "string"
+        },
+        "Name": {
+          "description": "Le nom du langage",
+          "type": "string"
+        }
+      },
+      "x-go-package": "internal/entities"
+    },
+    "Student": {
+      "description": "Un étudiant",
+      "type": "object",
+      "properties": {
+        "Age": {
+          "description": "L'âge de l'étudiant",
+          "type": "integer",
+          "format": "int64"
+        },
+        "FirstName": {
+          "description": "Le prénom de l'étudiant",
+          "type": "string"
+        },
+        "Id": {
+          "description": "L'identifiant unique de l'étudiant",
+          "type": "integer",
+          "format": "int64"
+        },
+        "LanguageCode": {
+          "description": "Le code du langage de programmation de l'étudiant",
+          "type": "string"
+        },
+        "LastName": {
+          "description": "Le nom de l'étudiant",
+          "type": "string"
+        }
+      },
+      "x-go-package": "internal/entities"
+    }
+  },
+  "responses": {
+    "badReq": {
+      "description": "Erreur 400 : Bad Request",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "description": "HTTP status code 400 -  Bad Request",
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Code"
+          }
+        }
+      }
+    },
+    "booleanRes": {
+      "description": "True si l'opération est un succès, false sinon",
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    "languageRes": {
+      "description": "Response payload pour un langage",
+      "schema": {
+        "$ref": "#/definitions/Language"
+      }
+    },
+    "languagesRes": {
+      "description": "Response payload pour une liste de langages",
+      "schema": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/definitions/Language"
+        }
+      }
+    },
+    "notFoundReq": {
+      "description": "Erreur 404 : Not Found",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "description": "HTTP status code 404 -  Not Found",
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Code"
+          }
+        }
+      }
+    },
+    "studentRes": {
+      "description": "Response payload pour un étudiant",
+      "schema": {
+        "$ref": "#/definitions/Student"
+      }
+    },
+    "studentsRes": {
+      "description": "Response payload pour une liste d'étudiants",
+      "schema": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/definitions/Student"
+        }
+      }
+    }
+  }
+}
